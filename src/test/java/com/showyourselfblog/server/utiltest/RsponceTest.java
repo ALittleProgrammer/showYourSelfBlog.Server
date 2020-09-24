@@ -1,10 +1,14 @@
 package com.showyourselfblog.server.utiltest;
 
 import com.showyourselfblog.server.util.GetMsg;
+import com.showyourselfblog.server.util.Responce;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.io.IOException;
 
 /**
  * @Description Responce测试
@@ -14,10 +18,11 @@ import org.springframework.boot.test.context.SpringBootTest;
  **/
 @SpringBootTest
 public class RsponceTest {
+
     Logger logger= LoggerFactory.getLogger(this.getClass());
 
     @Test
     void test(){
-        logger.info(GetMsg.GetMsgs(1001));
+        logger.info(new Responce(1002).toString());
     }
 }

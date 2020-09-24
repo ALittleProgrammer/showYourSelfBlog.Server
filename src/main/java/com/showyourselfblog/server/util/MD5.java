@@ -1,4 +1,5 @@
 package com.showyourselfblog.server.util;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.DigestUtils;
 
 /**
@@ -8,6 +9,9 @@ import org.springframework.util.DigestUtils;
  * @Date 2020-09-19 18:14
  **/
 public class MD5 {
+
+    static String key;
+
     /**
      * MD5方法
      *
@@ -17,6 +21,10 @@ public class MD5 {
      */
     public static String md5(String text) throws Exception {
         return DigestUtils.md5DigestAsHex(text.getBytes());
+    }
+
+    public static String md5Key(String text) throws Exception {
+        return DigestUtils.md5DigestAsHex((key+text).getBytes());
     }
 
     /**
@@ -29,5 +37,10 @@ public class MD5 {
      */
     public static boolean verify(String text, String md5) throws Exception {
         return md5.equalsIgnoreCase(md5(text));
+    }
+
+    @Value("${blog.conf.md5.key}")
+    public static void setKey(String key) {
+        MD5.key = key;
     }
 }

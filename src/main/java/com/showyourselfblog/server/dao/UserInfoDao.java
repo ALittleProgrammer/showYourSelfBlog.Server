@@ -9,6 +9,6 @@ import org.springframework.data.repository.CrudRepository;
  * @Author Peng Jiankun
  * @Date 2020-09-19 14:26
  **/
-public interface UserIndoDao extends CrudRepository<UserInfo,String> {
+public interface UserInfoDao extends CrudRepository<UserInfo,String> {
 
 }

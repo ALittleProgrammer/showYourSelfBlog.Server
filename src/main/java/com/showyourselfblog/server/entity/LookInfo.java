@@ -1,5 +1,7 @@
 package com.showyourselfblog.server.entity;
 
+import lombok.Data;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.sql.Timestamp;
@@ -11,6 +13,7 @@ import java.sql.Timestamp;
  * @Date 2020-09-16 16:24
  **/
 @Entity
+@Data
 public class LookInfo {
     @Id
     int lid;

@@ -1,5 +1,7 @@
 package com.showyourselfblog.server.entity;
 
+import lombok.Data;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -12,6 +14,7 @@ import java.sql.Timestamp;
  * @Date 2020-09-16 16:17
  **/
 @Entity
+@Data
 public class CommentsInfo {
     @Id
     int id;

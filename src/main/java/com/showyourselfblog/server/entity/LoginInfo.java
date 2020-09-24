@@ -1,5 +1,7 @@
 package com.showyourselfblog.server.entity;
 
+import lombok.Data;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -10,6 +12,7 @@ import javax.persistence.Id;
  * @Date 2020-09-16 16:11
  **/
 @Entity
+@Data
 public class LoginInfo {
     @Id
     int id;

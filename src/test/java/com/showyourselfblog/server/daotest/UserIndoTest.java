@@ -1,6 +1,6 @@
 package com.showyourselfblog.server.daotest;
 
-import com.showyourselfblog.server.dao.UserIndoDao;
+import com.showyourselfblog.server.dao.UserInfoDao;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,10 +14,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 public class UserIndoTest {
     @Autowired
-    UserIndoDao userIndoDao;
+    UserInfoDao userInfoDao;
 
     @Test
     void testCon(){
-        userIndoDao.findAll().forEach(System.out::println);
+        userInfoDao.findAll().forEach(System.out::println);
     }
 }

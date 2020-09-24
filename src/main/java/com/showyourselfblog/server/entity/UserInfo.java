@@ -1,5 +1,7 @@
 package com.showyourselfblog.server.entity;
 
+import lombok.Data;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -12,11 +14,12 @@ import java.sql.Timestamp;
  * @Date 2020-09-14 17:01
  **/
 @Entity
-@Table(name = "UserInfo")
+@Table(name = "user_info")
+@Data
 public class UserInfo {
     @Id
-    String userId;
     String phone;
+    String userId;
     String username;
     String realName;
     int userLv;
