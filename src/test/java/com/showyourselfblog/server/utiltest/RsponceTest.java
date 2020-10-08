@@ -22,7 +22,7 @@ public class RsponceTest {
     Logger logger= LoggerFactory.getLogger(this.getClass());
 
     @Test
-    void test(){
+    void test() throws IOException {
         logger.info(new Responce(1002).toString());
     }
 }

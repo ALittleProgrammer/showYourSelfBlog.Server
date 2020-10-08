@@ -29,7 +29,7 @@ public class UserInfo {
     /**
      * true男，false女
      **/
-    boolean sex;
+    String sex;
     int exception;
     Timestamp registerTime;
 

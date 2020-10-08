@@ -19,23 +19,17 @@ import java.io.IOException;
 @Data
 public class Responce {
 
-    Logger log= LoggerFactory.getLogger(this.getClass());
-
     int code;
     String msg;
     JSONObject data;
     boolean success;
 
     public Responce(int ecode) {
-        try{
         code=ecode;
         msg=GetMsg.GetMsgs(code);
         success=false;
         if ("ok".equals(msg)){
             success=true;
-        }
-        }catch (IOException e){
-            log.error(e.toString());
         }
     }
 

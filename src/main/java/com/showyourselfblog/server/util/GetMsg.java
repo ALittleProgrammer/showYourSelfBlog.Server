@@ -1,5 +1,7 @@
 package com.showyourselfblog.server.util;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -22,36 +24,41 @@ import java.util.Map;
 public class GetMsg {
 
     static String path;
-    static Map<Integer,String> map=new HashMap<Integer,String>(16);
+    static Map<Integer, String> map = new HashMap<Integer, String>(16);
 
-    public static String GetMsgs(int code) throws IOException {
-        if (map.isEmpty()){
+    static Logger logger = LoggerFactory.getLogger(GetMsg.class);
+
+    public static String GetMsgs(int code){
+        if (map.isEmpty()) {
             mapInit();
         }
         return map.get(code);
     }
 
-    private static void mapInit() throws IOException {
+    private static void mapInit() {
 
-        FileReader fr=new FileReader(path);
-        BufferedReader reader=new BufferedReader(fr);
-        String line;
-        String[] msgs;
-
-        while((line=reader.readLine())!=null){
-            line.replace(" ","");
-            if (line.charAt(0)=='#'){
-                continue;
+        try {
+            FileReader fr = new FileReader(path);
+            BufferedReader reader = new BufferedReader(fr);
+            String line;
+            String[] msgs;
+            while ((line = reader.readLine()) != null) {
+                line.replace(" ", "");
+                if (line.charAt(0) == '#') {
+                    continue;
+                }
+                line = line.replace(" ", "");
+                msgs = line.split("=");
+                map.put(Integer.valueOf(msgs[0]), msgs[1]);
             }
-            line=line.replace(" ","");
-            msgs=line.split("=");
-            map.put(Integer.valueOf(msgs[0]),msgs[1]);
+        } catch (IOException e) {
+            logger.error(e.toString());
         }
     }
 
     @Value(value = "${blog.conf.msg.path}")
-    void setPath(String path1){
-        path=path1;
+    void setPath(String path1) {
+        path = path1;
     }
 
 }

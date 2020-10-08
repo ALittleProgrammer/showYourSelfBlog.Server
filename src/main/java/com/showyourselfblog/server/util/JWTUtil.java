@@ -40,8 +40,6 @@ public class JWTUtil {
         //头部信息,可有可无
         Map<String, Object> header = new HashMap<>(2);
         header.put("typ", "jwt");
-
-
         return Jwts.builder().setHeader(header)
                 // .setSubject("weimi")//主题
                 // .setIssuer("weimi") //发送方
