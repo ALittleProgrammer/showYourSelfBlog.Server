@@ -3,6 +3,8 @@ package com.showyourselfblog.server.entity;
 import lombok.Data;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.sql.Timestamp;
 
@@ -15,6 +17,7 @@ import java.sql.Timestamp;
 @Entity
 @Data
 public class LookInfo {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     int lid;
     String userId;

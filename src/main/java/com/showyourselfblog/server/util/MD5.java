@@ -19,11 +19,11 @@ public class MD5 {
      * @return 密文
      * @throws Exception
      */
-    public static String md5(String text) throws Exception {
+    public static String md5(String text){
         return DigestUtils.md5DigestAsHex(text.getBytes());
     }
 
-    public static String md5Key(String text) throws Exception {
+    public static String md5Key(String text){
         return DigestUtils.md5DigestAsHex((key+text).getBytes());
     }
 
@@ -35,7 +35,7 @@ public class MD5 {
      * @return true/false
      * @throws Exception
      */
-    public static boolean verify(String text, String md5) throws Exception {
+    public static boolean verify(String text, String md5){
         return md5.equalsIgnoreCase(md5(text));
     }
 

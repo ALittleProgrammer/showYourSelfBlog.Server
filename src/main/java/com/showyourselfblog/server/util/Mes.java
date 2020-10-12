@@ -64,7 +64,7 @@ public class Mes {
     }
 
     static public boolean isValid(String phone,String checkNum){
-        return checkNum!=null&&Mes.mes.redisUtil.get(phone).equals(checkNum);
+        return checkNum!=null&&Mes.mes.redisUtil.get(phone)!=null&&Mes.mes.redisUtil.get(phone).equals(checkNum);
     }
 
     @Value("${blog.conf.mes.accessId}")

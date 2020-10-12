@@ -1,5 +1,6 @@
 package com.showyourselfblog.server.dao;
 
+import com.showyourselfblog.server.entity.LoginInfo;
 import com.showyourselfblog.server.entity.LookInfo;
 import org.springframework.data.repository.CrudRepository;
 
@@ -9,5 +10,5 @@ import org.springframework.data.repository.CrudRepository;
  * @Author Peng Jiankun
  * @Date 2020-09-19 18:02
  **/
-public interface LoginInfoDao extends CrudRepository<LookInfo,Integer> {
+public interface LoginInfoDao extends CrudRepository<LoginInfo,Integer> {
 }

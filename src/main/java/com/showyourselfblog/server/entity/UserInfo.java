@@ -14,7 +14,6 @@ import java.sql.Timestamp;
  * @Date 2020-09-14 17:01
  **/
 @Entity
-@Table(name = "user_info")
 @Data
 public class UserInfo {
     @Id

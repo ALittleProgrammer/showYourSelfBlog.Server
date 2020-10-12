@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import lombok.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
@@ -27,11 +28,13 @@ public class Responce {
     public Responce(int ecode) {
         code=ecode;
         msg=GetMsg.GetMsgs(code);
-        success=false;
-        if ("ok".equals(msg)){
-            success=true;
-        }
+        success= "OK".equalsIgnoreCase(msg);
     }
 
-
+    public Responce(int ecode,JSONObject data1){
+        data=data1;
+        code=ecode;
+        msg=GetMsg.GetMsgs(code);
+        success= "OK".equalsIgnoreCase(msg);
+    }
 }

@@ -3,6 +3,8 @@ package com.showyourselfblog.server.entity;
 import lombok.Data;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.sql.Timestamp;
 
@@ -15,23 +17,27 @@ import java.sql.Timestamp;
 @Entity
 @Data
 public class PostInfo {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    String tid;
+    Integer tid;
     String userId;
-    String tPath;
+    String text;
     String title;
     int nOfCom;
     int nOfCol;
     int nOfFor;
     int nOfUn;
+    int nOfLike;
+    int nOfWat;
     Timestamp uptime;
+    String intro;
 
     @Override
     public String toString() {
         return "PostInfo{" +
                 "tid='" + tid + '\'' +
                 ", userId='" + userId + '\'' +
-                ", path='" + tPath + '\'' +
+                ", path='" + text + '\'' +
                 ", title='" + title + '\'' +
                 ", nOfCom=" + nOfCom +
                 ", nOfCol=" + nOfCol +

@@ -1,15 +1,18 @@
 package com.showyourselfblog.server.util;
 
 
-import java.text.SimpleDateFormat;
-import java.util.Base64;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
+import java.security.Key;
+import java.util.*;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Value;
+
 import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
+import javax.xml.crypto.Data;
 
 /**
  * @Description JWT工具类
@@ -19,13 +22,27 @@ import javax.crypto.SecretKey;
  **/
 public class JWTUtil {
 
-    //过期时间
-    private static final long EXPIRE = 60 * 1000;
+    /**
+     * 过期时间
+     */
+    private static final long EXPIRE = 5*24*60*60*1000;
+
+    static String secKey="secKey";
+
+    static byte[] encodedKey = Base64.getDecoder().decode(secKey);
+
+    static SecretKey key = new SecretKeySpec(MD5.md5(secKey).getBytes(), 0, MD5.md5(secKey).getBytes().length, "HmacSHA256");
+
+    public static SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
 
     /**
      * 密钥，动态生成的密钥
      */
-    public static final SecretKey key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+
+    @Value("blog.conf.jwt.secKey")
+    public static void setSecKey(String secKey1){
+        secKey=secKey1;
+    }
 
     /**
      * 生成token
@@ -170,6 +187,16 @@ public class JWTUtil {
             final Date expiration = getExpiration(token);
             return expiration.before(new Date());
         } catch (ExpiredJwtException expiredJwtException) {
+            return true;
+        }
+    }
+
+    public static boolean beUpdate(String token) {
+        try {
+            Date expiration = getExpiration(token);
+            expiration.setTime((long) (expiration.getTime() + EXPIRE * 0.5));
+            return expiration.before(new Date());
+        } catch (Exception e) {
             return true;
         }
     }

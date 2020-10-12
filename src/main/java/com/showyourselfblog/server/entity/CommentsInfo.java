@@ -2,9 +2,7 @@ package com.showyourselfblog.server.entity;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
@@ -16,6 +14,7 @@ import java.sql.Timestamp;
 @Entity
 @Data
 public class CommentsInfo {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     int id;
     String tid;
@@ -25,7 +24,7 @@ public class CommentsInfo {
     String text;
     Timestamp time;
     int likeNum;
-    int unlikeNum;
+    int unLikeNum;
 
     @Override
     public String toString() {
@@ -38,7 +37,7 @@ public class CommentsInfo {
                 ", text='" + text + '\'' +
                 ", time=" + time +
                 ", likeNum=" + likeNum +
-                ", unlikeNum=" + unlikeNum +
+                ", unlikeNum=" + unLikeNum +
                 '}';
     }
 }
